@@ -103,6 +103,35 @@ body:not(.dark) p{
     nav ul li a:hover{
       color:#00e5ff;
     }
+.bg-blob{
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:0.25;
+  z-index:-1;
+}
+
+.blob-1{
+  background:#7c8cff;
+  top:10%;
+  left:-120px;
+}
+
+.blob-2{
+  background:#00e5ff;
+  bottom:10%;
+  right:-120px;
+}
+
+body.dark .blob-1{
+  background:#00e5ff;
+}
+
+body.dark .blob-2{
+  background:#7cffc4;
+}
 
     /* Hero */
     .hero{
@@ -119,6 +148,24 @@ body:not(.dark) p{
       max-width:850px;
       animation:fadeUp 1.4s ease forwards;
     }
+    .hero-ring{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  border:1px solid rgba(63,79,166,0.25);
+  animation:ringRotate 20s linear infinite;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:-1;
+}
+
+@keyframes ringRotate{
+  from{ transform:translate(-50%,-50%) rotate(0deg); }
+  to{ transform:translate(-50%,-50%) rotate(360deg); }
+}
+
 
     .hero h2{
       font-size:3.3rem;
@@ -256,6 +303,105 @@ body:not(.dark) p{
       color:#cfd6ff;
       margin-bottom:10px;
     }
+    .contact-section{
+  position:relative;
+  padding:100px 30px;
+  text-align:center;
+}
+
+.contact-sub{
+  margin-bottom:30px;
+  color:#4a5585;
+}
+.tech-grid{
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(63,79,166,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63,79,166,0.05) 1px, transparent 1px);
+  background-size:60px 60px;
+  z-index:-2;
+}
+
+body.dark .tech-grid{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+}
+
+
+/* Glassmorphism form */
+.contact-form{
+  max-width:420px;
+  margin:0 auto;
+  padding:30px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+body.dark .contact-form{
+  background:rgba(20,30,60,0.6);
+}
+
+.contact-form input,
+.contact-form textarea{
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.1);
+  font-size:0.95rem;
+  outline:none;
+}
+
+body.dark .contact-form input,
+body.dark .contact-form textarea{
+  background:#0f172a;
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.15);
+}
+
+.contact-form button{
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#3f4fa6;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-form button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(63,79,166,0.3);
+}
+.contact-orb{
+  position:absolute;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:radial-gradient(circle,#00e5ff,#7cffc4);
+  opacity:0.25;
+  filter:blur(20px);
+  top:40%;
+  left:50%;
+  transform:translateX(-50%);
+  animation:orbFloat 6s ease-in-out infinite;
+  z-index:-1;
+}
+
+@keyframes orbFloat{
+  0%{ transform:translate(-50%,0); }
+  50%{ transform:translate(-50%,-25px); }
+  100%{ transform:translate(-50%,0); }
+}
+
+
 
     /* Footer */
     footer{
@@ -325,6 +471,10 @@ body:not(.dark) p{
   </style>
 </head>
 <body>
+  <div class="bg-blob blob-1"></div>
+<div class="bg-blob blob-2"></div>
+<div class="tech-grid"></div>
+
 
   <!-- Navbar -->
   <nav>
@@ -339,8 +489,11 @@ body:not(.dark) p{
   </nav>
 
   <!-- Hero -->
+   
   <div class="hero">
     <div class="hero-content">
+      <div class="hero-ring"></div>
+
       <h2>Code • Quant • Innovate</h2>
       <p>The official quantitative & coding club of NIT Jalandhar — where logic meets creativity.</p>
       <button>Join the Club</button>
@@ -426,6 +579,21 @@ body:not(.dark) p{
     <p>Email: superquantcoders@nitj.ac.in</p>
     <p>Instagram / LinkedIn: @superquantcoders</p>
   </section>
+  <section id="contact" class="contact-section fade-up">
+  <h3>Get in Touch</h3>
+  <p class="contact-sub">Interested in joining or collaborating with us?</p>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="4" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <!-- Visual object -->
+  <div class="contact-orb"></div>
+</section>
+
 
   <!-- Footer -->
   <footer>
